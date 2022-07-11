@@ -1,5 +1,5 @@
 import React from 'react';
-import { getWeather } from './api';
+import { getWeather } from 'services/getWeather';
 
 export const Main = () => {
   const [weather, setWeather] = React.useState(null);
@@ -9,9 +9,7 @@ export const Main = () => {
   React.useEffect(() => {
     const getWeatherData = async () => {
       setIsLoading(true);
-      // console.log(navigator.geolocation.getCurrentPosition());
       const response = await getWeather('brooklyn');
-      console.log('weather', response);
       setWeather(response);
       setIsLoading(false);
     };
