@@ -13,5 +13,8 @@
     "sourceType": "module"
   },
   "plugins": ["react", "react-hooks", "prettier"],
+  "globals": {
+    "process": true
+  },
   "rules": {}
 }
