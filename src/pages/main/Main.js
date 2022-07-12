@@ -1,10 +1,11 @@
 import React from 'react';
+import { Navbar } from 'common/nav';
 import { getWeather } from 'services/getWeather';
 
 export const Main = () => {
   const [weather, setWeather] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  // const [searchValue, setSearchValue] = React.useState('');
+  const [searchValue, setSearchValue] = React.useState('');
 
   React.useEffect(() => {
     const getWeatherData = async () => {
@@ -19,7 +20,8 @@ export const Main = () => {
 
   return (
     <div>
-      weather
+      {console.log('value', searchValue)}
+      <Navbar setValue={setSearchValue} />
       {isLoading || !weather ? (
         <div>...loading</div>
       ) : (
@@ -31,5 +33,3 @@ export const Main = () => {
     </div>
   );
 };
-
-// http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={limit}&appid={API key}
