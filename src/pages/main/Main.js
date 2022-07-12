@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navbar } from 'common/nav';
 import { getWeather } from 'services/getWeather';
-import { Input } from 'common/input/Input';
-import { ErrorMessage } from 'common/error/ErrorMessage';
+import { Input } from 'common/input';
+import { Loading } from 'common/loading';
+import { ErrorMessage } from 'common/error';
 
 export const Main = () => {
   const [weather, setWeather] = React.useState(null);
@@ -45,14 +46,14 @@ export const Main = () => {
       <Navbar setValue={setSearchValue} />
       <div>
         <button
-          disabled={unit === IMPERIAL}
+          disabled={unit === IMPERIAL || error}
           onClick={() => handleUnitChange(IMPERIAL)}
         >
           F
         </button>
         |
         <button
-          disabled={unit === METRIC}
+          disabled={unit === METRIC || error}
           onClick={() => handleUnitChange(METRIC)}
         >
           C
@@ -61,9 +62,8 @@ export const Main = () => {
       <form onSubmit={handleSubmit}>
         <Input setValue={setSearchValue} />
       </form>
-      {isLoading || !weather ? (
-        <div>...loading</div>
-      ) : (
+      {(isLoading || !weather) && !error && <Loading />}
+      {!isLoading && weather && (
         <div>
           <h1>{weather.name}</h1>
           <h2>{weather.temp}</h2>
