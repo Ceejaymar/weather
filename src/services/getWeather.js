@@ -3,14 +3,16 @@ import axios from 'axios';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-export const getWeather = async (searchValue) => {
+export const getWeather = async (searchValue, measurement) => {
   const url = new URL(BASE_URL);
   url.search = new URLSearchParams({
     ...determineParam(searchValue),
-    units: 'imperial',
+    units: measurement,
     appid: API_KEY,
   });
+
   const response = await axios.get(url);
+
   return formatWeather(response.data);
 };
 

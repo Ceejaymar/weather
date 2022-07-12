@@ -9,21 +9,25 @@ export const Main = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState('brooklyn');
   const [error, setError] = React.useState('');
+  const [measurement, setMeasurement] = React.useState('imperial');
+
+  const IMPERIAL = 'imperial';
+  const METRIC = 'metric';
 
   React.useEffect(() => {
     getWeatherData();
-  }, []);
+  }, [measurement]);
 
   const getWeatherData = async () => {
     setIsLoading(true);
     setError('');
 
     try {
-      const response = await getWeather(searchValue);
+      const response = await getWeather(searchValue, measurement);
       setWeather(response);
       setIsLoading(false);
     } catch (err) {
-      setError(err.response.statusText);
+      setError(err.response?.statusText);
     }
   };
 
@@ -32,9 +36,28 @@ export const Main = () => {
     getWeatherData(searchValue);
   };
 
+  const handleMeasurementChange = (degrees) => {
+    setMeasurement(degrees);
+  };
+
   return (
     <>
       <Navbar setValue={setSearchValue} />
+      <div>
+        <button
+          disabled={measurement === IMPERIAL}
+          onClick={() => handleMeasurementChange(IMPERIAL)}
+        >
+          F
+        </button>
+        |
+        <button
+          disabled={measurement === METRIC}
+          onClick={() => handleMeasurementChange(METRIC)}
+        >
+          C
+        </button>
+      </div>
       <form onSubmit={handleSubmit}>
         <Input setValue={setSearchValue} />
       </form>
