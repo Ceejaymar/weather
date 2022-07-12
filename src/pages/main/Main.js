@@ -9,21 +9,21 @@ export const Main = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState('brooklyn');
   const [error, setError] = React.useState('');
-  const [measurement, setMeasurement] = React.useState('imperial');
+  const [unit, setUnit] = React.useState('imperial');
 
   const IMPERIAL = 'imperial';
   const METRIC = 'metric';
 
   React.useEffect(() => {
     getWeatherData();
-  }, [measurement]);
+  }, [unit]);
 
   const getWeatherData = async () => {
     setIsLoading(true);
     setError('');
 
     try {
-      const response = await getWeather(searchValue, measurement);
+      const response = await getWeather(searchValue, unit);
       setWeather(response);
       setIsLoading(false);
     } catch (err) {
@@ -36,8 +36,8 @@ export const Main = () => {
     getWeatherData(searchValue);
   };
 
-  const handleMeasurementChange = (degrees) => {
-    setMeasurement(degrees);
+  const handleUnitChange = (degrees) => {
+    setUnit(degrees);
   };
 
   return (
@@ -45,15 +45,15 @@ export const Main = () => {
       <Navbar setValue={setSearchValue} />
       <div>
         <button
-          disabled={measurement === IMPERIAL}
-          onClick={() => handleMeasurementChange(IMPERIAL)}
+          disabled={unit === IMPERIAL}
+          onClick={() => handleUnitChange(IMPERIAL)}
         >
           F
         </button>
         |
         <button
-          disabled={measurement === METRIC}
-          onClick={() => handleMeasurementChange(METRIC)}
+          disabled={unit === METRIC}
+          onClick={() => handleUnitChange(METRIC)}
         >
           C
         </button>
