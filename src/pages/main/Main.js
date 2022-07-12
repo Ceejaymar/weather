@@ -1,27 +1,43 @@
 import React from 'react';
 import { Navbar } from 'common/nav';
 import { getWeather } from 'services/getWeather';
+import { Input } from 'common/input/Input';
+import { ErrorMessage } from 'common/error/ErrorMessage';
 
 export const Main = () => {
   const [weather, setWeather] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [searchValue, setSearchValue] = React.useState('');
+  const [searchValue, setSearchValue] = React.useState('brooklyn');
+  const [error, setError] = React.useState('');
 
   React.useEffect(() => {
-    const getWeatherData = async () => {
-      setIsLoading(true);
-      const response = await getWeather('brooklyn');
-      setWeather(response);
-      setIsLoading(false);
-    };
-
     getWeatherData();
   }, []);
 
+  const getWeatherData = async () => {
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await getWeather(searchValue);
+      setWeather(response);
+      setIsLoading(false);
+    } catch (err) {
+      setError(err.response.statusText);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getWeatherData(searchValue);
+  };
+
   return (
-    <div>
-      {console.log('value', searchValue)}
+    <>
       <Navbar setValue={setSearchValue} />
+      <form onSubmit={handleSubmit}>
+        <Input setValue={setSearchValue} />
+      </form>
       {isLoading || !weather ? (
         <div>...loading</div>
       ) : (
@@ -30,6 +46,7 @@ export const Main = () => {
           <h2>{weather.temp}</h2>
         </div>
       )}
-    </div>
+      {error && <ErrorMessage>{error}. Try Again</ErrorMessage>}
+    </>
   );
 };
