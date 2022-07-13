@@ -10,7 +10,7 @@ const UpMotion = keyframes`
     transform: translateY(0);
   }
   50% {
-    background-color: cornflowerblue;
+    background-color: #C8B6E2;
     transform: translateY(-50px);
   }
   100% {
