@@ -82,7 +82,7 @@ export const Main = () => {
         Currently in <span>{weather?.name}</span>
       </Header>
       <UnitSearch>
-        <Units onClick={handleUnitChange} error={error} />
+        <Units unit={unit} onClick={handleUnitChange} error={error} />
         <form onSubmit={handleSubmit}>
           <Input setValue={setSearchValue} />
         </form>

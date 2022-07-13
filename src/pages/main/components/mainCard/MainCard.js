@@ -98,8 +98,8 @@ export const MainCard = ({ weather }) => (
           <span>{weather.humidity}%</span>
         </InfoDiv>
         <InfoDiv>
-          <span>Pressure</span>
-          <span>{weather.pressure}</span>
+          <span>Pollution</span>
+          <span>{weather.co}co</span>
         </InfoDiv>
       </WeatherInfoOne>
       <WeatherInfoTwo>
@@ -133,7 +133,7 @@ MainCard.propTypes = {
     tempMin: PropTypes.number.isRequired,
     tempMax: PropTypes.number.isRequired,
     humidity: PropTypes.number.isRequired,
-    pressure: PropTypes.number.isRequired,
+    co: PropTypes.number.isRequired,
     sunrise: PropTypes.string.isRequired,
     sunset: PropTypes.string.isRequired,
     windSpeed: PropTypes.number.isRequired,
