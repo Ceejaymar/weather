@@ -18,7 +18,7 @@ export const Units = ({ unit, error, onClick }) => (
     <Button
       variant='secondary'
       onClick={() => onClick(IMPERIAL)}
-      disabled={unit === IMPERIAL || error}
+      disable={unit === IMPERIAL || error}
     >
       F&deg;
     </Button>
@@ -26,7 +26,7 @@ export const Units = ({ unit, error, onClick }) => (
     <Button
       variant='secondary'
       onClick={() => onClick(METRIC)}
-      disabled={unit === METRIC || error}
+      disable={unit === METRIC || error}
     >
       C&deg;
     </Button>
