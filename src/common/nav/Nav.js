@@ -3,25 +3,42 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  padding-inline: 20vw;
-  text-align: left;
+  padding-inline: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   font-weight: 700;
   font-size: 1.5rem;
+  background-color: #2f3044;
+
+  div {
+    color: #ec6e4c;
+    margin: 20px;
+  }
   span {
-    font-weight: 500;
+    color: #fff;
+    font-weight: 300;
   }
 `;
 
-export const Navbar = () => {
+const Date = styled.span`
+  font-weight: 500;
+  font-size: 1.4rem;
+`;
+
+export const Navbar = ({ date }) => {
   return (
     <Nav>
-      <p>
+      <div>
         Weather<span>app</span>
-      </p>
+      </div>
+      <Date>{date}</Date>
     </Nav>
   );
 };
 
 Navbar.propTypes = {
   setValue: PropTypes.func,
+  date: PropTypes.string.isRequired,
 };
