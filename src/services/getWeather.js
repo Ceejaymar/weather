@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { format } from 'date-fns';
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -47,16 +48,17 @@ const formatWeather = (weatherData, forecastData) => {
     wind: { deg, speed },
     main: { temp, feels_like, temp_min, temp_max, humidity, pressure },
   } = weatherData;
+
   const formattedData = {
     id,
     name,
     visibility,
     humidity,
     pressure,
-    date: dt,
-    sunrise: sunrise,
-    sunset: sunset,
-    icon: weather[0].icon,
+    date: format(dt, 'iiii, MMMM do'),
+    sunrise: format(sunrise, 'p'),
+    sunset: format(sunset, 'p'),
+    icon: `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
     forecast: weather[0].main,
     temp: Math.round(temp),
     feelsLike: Math.round(feels_like),
@@ -66,10 +68,6 @@ const formatWeather = (weatherData, forecastData) => {
     windSpeed: speed,
     windDirection: deg,
   };
-
-  // const getIcons = () => {
-  //   return null;
-  // };
 
   return formattedData;
 };
