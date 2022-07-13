@@ -2,6 +2,8 @@ import axios from 'axios';
 import { format } from 'date-fns';
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
+const forecastUrl = new URL(BASE_URL + 'onecall');
+const pollutionUrl = new URL(BASE_URL + 'air_pollution');
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 export const getWeather = async (searchValue, unit) => {
@@ -14,8 +16,6 @@ export const getWeather = async (searchValue, unit) => {
 
   const weather = await axios.get(url);
 
-  const forecastUrl = new URL(BASE_URL + 'onecall');
-
   forecastUrl.search = new URLSearchParams({
     lat: weather.data.coord.lat,
     lon: weather.data.coord.lon,
@@ -26,7 +26,15 @@ export const getWeather = async (searchValue, unit) => {
 
   const forecast = await axios.get(forecastUrl);
 
-  return formatWeather(weather.data, forecast.data);
+  pollutionUrl.search = new URLSearchParams({
+    lat: weather.data.coord.lat,
+    lon: weather.data.coord.lon,
+    appid: API_KEY,
+  });
+
+  const pollution = await axios.get(pollutionUrl);
+
+  return formatWeather(weather.data, forecast.data, pollution.data);
 };
 
 const determineParam = (searchValue) => {
@@ -37,7 +45,7 @@ const determineParam = (searchValue) => {
   }
 };
 
-const formatWeather = (weatherData, forecastData) => {
+const formatWeather = (weatherData, forecastData, pollutionData) => {
   const {
     id,
     name,
@@ -67,6 +75,7 @@ const formatWeather = (weatherData, forecastData) => {
     daily: forecastData.daily.slice(0, 5),
     windSpeed: speed,
     windDirection: deg,
+    co: Math.round(pollutionData.list[0].components.co),
   };
 
   return formattedData;

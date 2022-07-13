@@ -6,6 +6,7 @@ import { Loading } from 'common/loading';
 import { ErrorMessage } from 'common/error';
 import { Units } from 'pages/main/components/unit';
 import { MainCard } from './components/mainCard';
+import { DailyCard } from './components/dailyCard';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -15,7 +16,6 @@ const Container = styled.div`
 `;
 
 const Header = styled.h1`
-  color: #fff;
   font-weight: 400;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
@@ -34,6 +34,18 @@ const UnitSearch = styled.div`
 
 const LoadingStyled = styled(Loading)`
   margin: auto;
+`;
+
+const DailyForecast = styled.h2`
+  margin-top: 30px;
+  font-weight: 400;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+`;
+
+const Daily = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export const Main = () => {
@@ -76,13 +88,23 @@ export const Main = () => {
         Currently in <span>{weather?.name}</span>
       </Header>
       <UnitSearch>
-        <Units onClick={handleUnitChange} error={error} />
+        <Units unit={unit} onClick={handleUnitChange} error={error} />
         <form onSubmit={handleSubmit}>
           <Input setValue={setSearchValue} />
         </form>
       </UnitSearch>
       {(isLoading || !weather) && !error && <LoadingStyled />}
-      {!isLoading && weather && <MainCard weather={weather} />}
+      {!isLoading && weather && (
+        <>
+          <MainCard weather={weather} />
+          <DailyForecast>5-day forecast</DailyForecast>
+          <Daily>
+            {weather.daily.map((day, i) => (
+              <DailyCard key={i} day={day} />
+            ))}
+          </Daily>
+        </>
+      )}
       {error && <ErrorMessage>{error}. Try Again</ErrorMessage>}
     </Container>
   );
