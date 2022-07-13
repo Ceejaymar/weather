@@ -16,7 +16,6 @@ const Container = styled.div`
 `;
 
 const Header = styled.h1`
-  color: #fff;
   font-weight: 400;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
@@ -35,6 +34,13 @@ const UnitSearch = styled.div`
 
 const LoadingStyled = styled(Loading)`
   margin: auto;
+`;
+
+const DailyForecast = styled.h2`
+  margin-top: 30px;
+  font-weight: 400;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
 `;
 
 const Daily = styled.div`
@@ -91,6 +97,7 @@ export const Main = () => {
       {!isLoading && weather && (
         <>
           <MainCard weather={weather} />
+          <DailyForecast>5-day forecast</DailyForecast>
           <Daily>
             {weather.daily.map((day, i) => (
               <DailyCard key={i} day={day} />

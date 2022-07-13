@@ -6,6 +6,7 @@ const MainContainer = styled.div``;
 
 const TempContainer = styled.div`
   display: flex;
+  margin-bottom: 30px;
 `;
 
 const CurrentForecast = styled.div`
