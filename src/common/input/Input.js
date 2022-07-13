@@ -2,7 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const InputStyled = styled.input``;
+const InputStyled = styled.input`
+  font-size: 1rem;
+  background-color: transparent;
+  outline: transparent;
+  border: 1px solid #fff;
+  padding: 5px 15px;
+  border-radius: 20px;
+  color: #fff;
+
+  &::placeholder {
+    color: #fff;
+  }
+`;
 
 export const Input = ({ setValue, placeholder }) => {
   return (
