@@ -2,11 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const MainContainer = styled.div``;
+const MainContainer = styled.div`
+  @media (min-width: 760px) {
+    display: flex;
+  }
+`;
 
 const TempContainer = styled.div`
   display: flex;
   margin-bottom: 30px;
+
+  @media (min-width: 760px) {
+    display: flex;
+    flex: 1;
+  }
 `;
 
 const CurrentForecast = styled.div`
@@ -33,12 +42,21 @@ const CurrentTemp = styled.div`
   span {
     font-weight: 300;
   }
+
+  @media (min-width: 760px) {
+    padding-top: 0;
+    font-size: clamp(5rem, 8vw, 9rem);
+  }
 `;
 
 const Side = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
+
+  @media (min-width: 760px) {
+    flex: 1;
+  }
 `;
 
 const WeatherInfoOne = styled.div`
@@ -60,11 +78,12 @@ const InfoDiv = styled.div`
 
   span:nth-child(1) {
     color: rgba(256, 256, 256, 0.6);
-    font-size: clamp(0.7rem, 1vw, 1.5rem);
+    font-size: clamp(0.7rem, 1vw, 1.2rem);
   }
+
   span:nth-child(2) {
     color: #fff;
-    font-size: clamp(1rem, 1.5vw, 2rem);
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
   }
 `;
 

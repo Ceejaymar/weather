@@ -19,10 +19,12 @@ const Header = styled.h1`
   font-weight: 400;
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
+  font-size: 2rem;
 
   span {
     color: #ec6e4c;
     font-weight: 700;
+    font-size: 2.5rem;
   }
 `;
 
