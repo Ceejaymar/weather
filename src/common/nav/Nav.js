@@ -5,18 +5,24 @@ import styled from 'styled-components';
 const Nav = styled.nav`
   padding-inline: 15vw;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  text-align: left;
+  align-items: center;
   font-weight: 700;
   font-size: 1.5rem;
-  color: #fff;
   background-color: #2f3044;
+
+  div {
+    color: #ec6e4c;
+    margin: 20px;
+  }
   span {
-    font-weight: 500;
+    color: #fff;
+    font-weight: 300;
   }
 `;
 
-const Date = styled.p`
+const Date = styled.span`
   font-weight: 500;
   font-size: 1.4rem;
 `;
@@ -24,9 +30,9 @@ const Date = styled.p`
 export const Navbar = ({ date }) => {
   return (
     <Nav>
-      <p>
+      <div>
         Weather<span>app</span>
-      </p>
+      </div>
       <Date>{date}</Date>
     </Nav>
   );
