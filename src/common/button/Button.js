@@ -6,7 +6,8 @@ const ButtonStyled = styled.button`
   background-color: ${({ variant }) =>
     variant === 'secondary' ? 'transparent' : '#ec6e4c'};
   border: none;
-  color: #fff;
+  color: ${({ disabled }) =>
+    disabled ? 'color: rgba(255, 255, 255, 0.6)' : '#fff'};
   font-size: 1.5rem;
   cursor: pointer;
   letter-spacing: 2px;
@@ -16,8 +17,13 @@ const ButtonStyled = styled.button`
   }
 `;
 
-export const Button = ({ children, variant, onClick, ...props }) => (
-  <ButtonStyled onClick={onClick} variant={variant} {...props}>
+export const Button = ({ children, variant, disabled, onClick, ...props }) => (
+  <ButtonStyled
+    onClick={onClick}
+    variant={variant}
+    disabled={disabled}
+    {...props}
+  >
     {children}
   </ButtonStyled>
 );
@@ -29,5 +35,6 @@ Button.defaultProps = {
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   variant: PropTypes.string,
+  disabled: PropTypes.Boolean,
   onClick: PropTypes.func,
 };
