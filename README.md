@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 A simple weather app.
 
-![weather app](https://i.imgur.com/5pwsbXG.png 'Weather app')
+<img src="https://i.imgur.com/5pwsbXG.png" alt="weather app screenshot" width="250"/>
 
 ## Start Up Instructions
 
