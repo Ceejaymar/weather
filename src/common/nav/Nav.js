@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
-  padding-inline: 15vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11,6 +10,10 @@ const Nav = styled.nav`
   font-weight: 700;
   font-size: 1.5rem;
   background-color: #2f3044;
+
+  @media (min-width: 480px) {
+    flex-direction: row;
+  }
 
   div {
     color: #ec6e4c;

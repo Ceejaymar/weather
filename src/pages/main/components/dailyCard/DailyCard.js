@@ -12,7 +12,7 @@ const Daily = styled.div`
   margin: 30px 0;
   color: #fff;
   font-weight: 700;
-  min-width: 150px;
+  min-width: 175px;
 
   span {
     margin: 5px 0;
