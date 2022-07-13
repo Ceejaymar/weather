@@ -42,15 +42,18 @@ const formatWeather = (weatherData, forecastData) => {
     name,
     dt,
     visibility,
-    sys: { sunrise, sunset },
     weather,
-    main: { temp, feels_like, temp_min, temp_max, humidity },
+    sys: { sunrise, sunset },
+    wind: { deg, speed },
+    main: { temp, feels_like, temp_min, temp_max, humidity, pressure },
   } = weatherData;
   const formattedData = {
     id,
     name,
-    date: dt,
     visibility,
+    humidity,
+    pressure,
+    date: dt,
     sunrise: sunrise,
     sunset: sunset,
     icon: weather[0].icon,
@@ -59,8 +62,9 @@ const formatWeather = (weatherData, forecastData) => {
     feelsLike: Math.round(feels_like),
     tempMin: Math.round(temp_min),
     tempMax: Math.round(temp_max),
-    humidity,
     daily: forecastData.daily.slice(0, 5),
+    windSpeed: speed,
+    windDirection: deg,
   };
 
   // const getIcons = () => {
