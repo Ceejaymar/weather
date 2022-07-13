@@ -10,7 +10,7 @@ A simple weather app.
 
 Open project in code editor. Find file named **.env-sample** and rename to **.env**.
 
-Replace _"API KEY GOES HERE"_ with your own API key.
+Replace _"API KEY GOES HERE"_ with your own API key from [OpenWeather](https://openweathermap.org/api 'Open weather website').
 
 Run **yarn install**
 
