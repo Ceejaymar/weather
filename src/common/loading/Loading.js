@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
@@ -36,10 +37,14 @@ const Circle = styled.span`
   }
 `;
 
-export const Loading = () => (
-  <Container>
+export const Loading = ({ className }) => (
+  <Container className={className}>
     <Circle />
     <Circle />
     <Circle />
   </Container>
 );
+
+Loading.propTypes = {
+  className: PropTypes.string,
+};
