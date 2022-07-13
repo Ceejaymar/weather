@@ -6,6 +6,7 @@ import { Loading } from 'common/loading';
 import { ErrorMessage } from 'common/error';
 import { Units } from 'pages/main/components/unit';
 import { MainCard } from './components/mainCard';
+import { DailyCard } from './components/dailyCard';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -34,6 +35,11 @@ const UnitSearch = styled.div`
 
 const LoadingStyled = styled(Loading)`
   margin: auto;
+`;
+
+const Daily = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export const Main = () => {
@@ -82,7 +88,16 @@ export const Main = () => {
         </form>
       </UnitSearch>
       {(isLoading || !weather) && !error && <LoadingStyled />}
-      {!isLoading && weather && <MainCard weather={weather} />}
+      {!isLoading && weather && (
+        <>
+          <MainCard weather={weather} />
+          <Daily>
+            {weather.daily.map((day, i) => (
+              <DailyCard key={i} day={day} />
+            ))}
+          </Daily>
+        </>
+      )}
       {error && <ErrorMessage>{error}. Try Again</ErrorMessage>}
     </Container>
   );
