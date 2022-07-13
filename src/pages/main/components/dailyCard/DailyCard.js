@@ -32,11 +32,11 @@ export const DailyCard = ({ day }) => (
 DailyCard.propTypes = {
   day: PropTypes.shape({
     dt: PropTypes.number.isRequired,
-    weather: PropTypes.shape([
-      {
+    weather: PropTypes.arrayOf(
+      PropTypes.shape({
         icon: PropTypes.string.isRequired,
-      },
-    ]),
+      })
+    ),
     temp: PropTypes.shape({
       day: PropTypes.number.isRequired,
     }),
