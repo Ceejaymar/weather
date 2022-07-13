@@ -9,7 +9,7 @@ const Daily = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1;
-  margin: 30px 0;
+  margin: 20px 0;
   color: #fff;
   font-weight: 700;
   min-width: 175px;
