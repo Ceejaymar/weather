@@ -58,7 +58,7 @@ const formatWeather = (weatherData, forecastData, pollutionData) => {
   } = weatherData;
 
   const daily = forecastData.daily.slice(1, 6).map((day) => {
-    return { ...day, dt: format(day.dt * 1000, 'iiii, MMMM do') };
+    return { ...day, dt: format(day.dt * 1000, 'iii') };
   });
 
   const formattedData = {
