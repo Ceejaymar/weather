@@ -57,22 +57,26 @@ const formatWeather = (weatherData, forecastData, pollutionData) => {
     main: { temp, feels_like, temp_min, temp_max, humidity, pressure },
   } = weatherData;
 
+  const daily = forecastData.daily.slice(1, 6).map((day) => {
+    return { ...day, dt: format(day.dt * 1000, 'iiii, MMMM do') };
+  });
+
   const formattedData = {
     id,
     name,
     visibility,
     humidity,
     pressure,
-    date: format(dt, 'iiii, MMMM do'),
-    sunrise: format(sunrise, 'p'),
-    sunset: format(sunset, 'p'),
+    daily,
+    date: format(dt * 1000, 'iiii, MMMM do'),
+    sunrise: format(sunrise * 1000, 'p'),
+    sunset: format(sunset * 1000, 'p'),
     icon: `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
     forecast: weather[0].main,
     temp: Math.round(temp),
     feelsLike: Math.round(feels_like),
     tempMin: Math.round(temp_min),
     tempMax: Math.round(temp_max),
-    daily: forecastData.daily.slice(0, 5),
     windSpeed: speed,
     windDirection: deg,
     co: Math.round(pollutionData.list[0].components.co),
