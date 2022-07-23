@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 import styled from 'styled-components';
 
 const Daily = styled.div`
@@ -24,7 +23,7 @@ export const DailyCard = ({ day }) => (
     <img
       src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
     />
-    <span>{format(day.dt, 'iii')}</span>
+    <span>{day.dt}</span>
     <span>{Math.round(day.temp.day)}&deg;</span>
   </Daily>
 );

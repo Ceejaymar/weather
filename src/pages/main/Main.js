@@ -85,7 +85,7 @@ export const Main = () => {
 
   return (
     <Container>
-      <Navbar setValue={setSearchValue} date={weather?.date} />
+      {weather && <Navbar setValue={setSearchValue} date={weather.date} />}
       <Header>
         Currently in <span>{weather?.name}</span>
       </Header>
