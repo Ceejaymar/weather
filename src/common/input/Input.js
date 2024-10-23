@@ -20,7 +20,7 @@ export const Input = ({ setValue, placeholder }) => {
   return (
     <InputStyled
       type='text'
-      aria-label='city-zip'
+      aria-label='city'
       onChange={(e) => setValue(e.target.value)}
       placeholder={placeholder}
     />
@@ -28,7 +28,7 @@ export const Input = ({ setValue, placeholder }) => {
 };
 
 Input.defaultProps = {
-  placeholder: 'Enter city or zipcode',
+  placeholder: 'Enter city',
 };
 
 Input.propTypes = {

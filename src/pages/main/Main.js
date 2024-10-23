@@ -67,10 +67,12 @@ export const Main = () => {
 
     try {
       const response = await getWeather(searchValue, unit);
+      console.log('response', response);
       setWeather(response);
       setIsLoading(false);
     } catch (err) {
       setError(err.response?.statusText);
+      setIsLoading(false);
     }
   };
 
@@ -85,9 +87,11 @@ export const Main = () => {
 
   return (
     <Container>
-      {weather && <Navbar setValue={setSearchValue} date={weather.date} />}
+      {weather && (
+        <Navbar setValue={setSearchValue} date={weather.current.date} />
+      )}
       <Header>
-        Currently in <span>{weather?.name}</span>
+        Currently in <span>{weather?.current.cityName}</span>
       </Header>
       <UnitSearch>
         <Units unit={unit} onClick={handleUnitChange} error={error} />
@@ -98,7 +102,7 @@ export const Main = () => {
       {(isLoading || !weather) && !error && <LoadingStyled />}
       {!isLoading && weather && (
         <>
-          <MainCard weather={weather} />
+          <MainCard weather={weather.current} />
           <DailyForecast>5-day forecast</DailyForecast>
           <Daily>
             {weather.daily.map((day, i) => (
